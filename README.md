@@ -19,7 +19,6 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 
 ```bash
 $ # All steps below
-$
 ```
 
 Access the `app` section in the browser: `http://127.0.0.1:5000/`
