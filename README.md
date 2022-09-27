@@ -11,6 +11,7 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 @ToDo
 
 <br />
+
 ## The manual build
 
 @ToDo
