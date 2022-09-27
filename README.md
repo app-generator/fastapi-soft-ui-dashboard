@@ -6,6 +6,22 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 
 <br />
 
+> Product Roadmap 
+
+| Status | Item | info | 
+| --- | --- | --- |
+| ❌ | **Up-to-date Dependencies** | - |
+| ❌ | **Best Practices** | This [guide](https://github.com/zhanymkanov/fastapi-best-practices) used as reference |
+| ❌ | **Simple, Intuitive Codebase** | [More info](https://github.com/app-generator/fastapi-soft-ui-dashboard/issues/1) |
+| ❌ | **UI Kit** | `Bootstrap 5`, `Dark-Mode` (persistent) |
+| ❌ | **Docker** | Simple Setup (local usage) |
+| ❌ | **Persistence** | `SQLite`, `MySql` |
+| ❌ | **Authentication** | Basic, `OAuth` via **AllAuth** for Github |
+
+> Something is missing? Submit a new `product feature request` using the [issues tracker](https://github.com/app-generator/fastapi-soft-ui-dashboard/issues).
+
+<br />
+
 ## How to used in `Docker`
 
 @ToDo
