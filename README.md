@@ -18,7 +18,8 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 | ❌ | **Basic Authentication** | classic user/password |
 | ❌ | **OAuth** | `Github` & `Twitter` providers |
 | ❌ | **API** | Products & Sales (linked tables) |
-|     |         | GET Request (public), Mutating requests (reserved for authenticated users) |
+|     |        | GET Requests (public), `get/`, `get/id`  |
+|     |        | Mutating requests (Create, UPD, DEL) (reserved for authenticated users) |
 | ❌ | **Docker** | Simple Setup (local usage) |
 
 > Something is missing? Submit a new `product feature request` using the [issues tracker](https://github.com/app-generator/fastapi-soft-ui-dashboard/issues).
