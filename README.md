@@ -4,15 +4,16 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 
 > UI Kit: [Soft UI Dashboard](https://github.com/app-generator/ct-soft-ui-dashboard-enh) **v1.0.6-enh1**
 
-<br>
+<br />
 
 ## How to used in `Docker`
 
 @ToDo
 
+<br />
 ## The manual build
 
-@
+@ToDo
 
 
 ```bash
@@ -26,7 +27,7 @@ Access the `app` section in the browser: `http://127.0.0.1:5000/`
 
 ## ✨ Code-base structure
 
-The project is coded using a simple and intuitive structure presented below:
+@ToDo - The project structure (to be updated) 
 
 ```bash
 < PROJECT ROOT >
@@ -78,8 +79,7 @@ The project is coded using a simple and intuitive structure presented below:
    |-- ************************************************************************
 ```
 
-<br />
-
+<br /> 
 
 ---
 **FastAPI Soft Dashboard** - Open-source Starter provided by **[AppSeed](https://appseed.us/)**
