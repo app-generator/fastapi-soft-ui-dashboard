@@ -1,2 +1,2 @@
-To run the application, cd into the backend folder and run the following command:
-
+To run the application, cd into the src folder and run the following command:
+uvicorn app:app --reload

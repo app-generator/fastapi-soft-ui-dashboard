@@ -38,7 +38,7 @@ six==1.16.0
 sniffio==1.2.0
 SQLAlchemy==1.4.36
 starlette==0.19.1
-typing-extensions==4.2.0
+typing_extensions==4.2.0
 ujson==5.2.0
 urllib3==1.26.9
 uvicorn==0.17.6
