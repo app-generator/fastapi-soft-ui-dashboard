@@ -1,9 +1,12 @@
 instructions.txt
+progress.txt
+
 
 
 # PYTHON IGNORES
 
 # Byte-compiled / optimized / DLL files
+*.db
 __pycache__/
 *.py[cod]
 *$py.class

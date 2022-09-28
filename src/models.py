@@ -1,7 +1,5 @@
 from helpers.database import Base
-from sqlalchemy import Column, String, Integer
-from sqlalchemy.sql.sqltypes import TIMESTAMP
-from sqlalchemy.sql.expression import text
+from sqlalchemy import Column, String, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 
 class User(Base):
@@ -12,19 +10,27 @@ class User(Base):
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
 
-    def __str__(self):
-        return f"""
-        id: {self.id}
-        email: {self.email}
-        username: {self.username}
-        """
 
-# products - id, name, description, price, currency
-# sales - id, product_id, state, value, fee, currency, client
+class Product(Base):
+    __tablename__ = 'products'
 
-# from server.
+    id = Column(Integer, primary_key=True, nullable=False)
+    name = Column(String, nullable=False, unique=False)
+    description = Column(String, nullable=False, unique=True)
+    price = Column(Float, nullable=False)
+    currency = Column(String, nullable=False)
 
-# class Product(Base):
-    # pass
+class Sale(Base):
+    __tablename__ = 'sales'
 
+    id = Column(Integer, primary_key=True, nullable=False)
+    state = Column(String, nullable=False)
+    value = Column(Float, nullable=False)
+    fee = Column(Float, nullable=False)
+    currency = Column(String, nullable=False)
+    client = Column(String, nullable=False)
+    
+    product_id = Column(String, ForeignKey("products.id", ondelete="CASCADE"))
+
+    product = relationship("Product")
     
