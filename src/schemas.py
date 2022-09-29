@@ -46,15 +46,6 @@ class Sale(SaleBase):
     class Config:
         orm_mode = True
 
-# class SaleOut(SaleBase):
-#     Sale: Sale
-
-#     class Config:
-#         orm_mode = True
-
-# class SaleCreate(SaleBase):
-#     pass
-
 class Token(BaseModel):
     access_token : str
     token_type : str
