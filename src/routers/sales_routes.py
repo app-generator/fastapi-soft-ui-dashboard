@@ -1,19 +1,19 @@
 from fastapi import status, HTTPException, Depends, APIRouter, Response
-from helpers.database import get_db
-from helpers.utils import hash
-from sqlalchemy.orm import Session
 from typing import List
+from sqlalchemy.orm import Session
 
 import oauth2, models, schemas
-# from src import oauth2, models, schemas
+from helpers.database import get_db
+from helpers.utils import hash
+
 
 router = APIRouter(
     prefix = "/sales",
     tags = ['Sales']
 )
 
-@router.get("/", response_model=List[schemas.SaleOut])
-def get_sales(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+@router.get("/", response_model=List[schemas.Sale])
+def get_sales(db: Session = Depends(get_db)):
     
     sales = db.query(models.Sale).all()
 
@@ -23,8 +23,8 @@ def get_sales(db: Session = Depends(get_db), current_user: int = Depends(oauth2.
     return sales
 
 
-@router.get("/{id}", response_model=schemas.SaleOut)
-def get_sale(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+@router.get("/{id}", response_model=schemas.Sale)
+def get_sale(id: int, db: Session = Depends(get_db)):
 
     sale = db.query(models.Sale).filter(models.Sale.id == id).first()
 
@@ -35,9 +35,9 @@ def get_sale(id: int, db: Session = Depends(get_db), current_user: int = Depends
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Sale)
-def create_sale(sale: schemas.SaleCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def create_sale(sale: schemas.SaleBase, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
-    new_sale = models.Sale(owner_id=current_user.id,**sale.dict())
+    new_sale = models.Sale(**sale.dict())
 
     db.add(new_sale)
     db.commit()
@@ -62,7 +62,7 @@ def delete_sale(id: int, db: Session = Depends(get_db), current_user: int = Depe
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @router.put("/{id}", response_model=schemas.Sale)
-def update_sale(id: int, updated_sale: schemas.SaleCreate,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_sale(id: int, updated_sale: schemas.SaleBase,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     sale_query = db.query(models.Sale).filter(models.Sale.id == id)
 

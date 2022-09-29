@@ -48,11 +48,11 @@ class Sale(SaleBase):
     class Config:
         orm_mode = True
 
-class SaleOut(SaleBase):
-    Sale: Sale
+# class SaleOut(SaleBase):
+#     Sale: Sale
 
-    class Config:
-        orm_mode = True
+#     class Config:
+#         orm_mode = True
 
 class SaleCreate(SaleBase):
     pass
