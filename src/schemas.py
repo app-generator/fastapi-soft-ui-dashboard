@@ -35,17 +35,6 @@ class Product(ProductBase):
     class Config:
         orm_mode = True
 
-class ProductOut(ProductBase):
-    Product: Product
-
-    class Config:
-        orm_mode = True
-
-
-class ProductCreate(ProductBase):
-    pass
-
-
 
 class SaleBase(BaseModel):
     state: str

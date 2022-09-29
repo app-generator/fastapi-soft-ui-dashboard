@@ -34,7 +34,7 @@ def get_product(id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Product)
-def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def create_product(product: schemas.ProductBase, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     new_product = models.Product(**product.dict())
 
@@ -61,7 +61,7 @@ def delete_product(id: int, db: Session = Depends(get_db), current_user: int = D
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @router.put("/{id}", response_model=schemas.Product)
-def update_product(id: int, updated_product: schemas.ProductCreate,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def update_product(id: int, updated_product: schemas.ProductBase,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     product_query = db.query(models.Product).filter(models.Product.id == id)
 
@@ -75,3 +75,4 @@ def update_product(id: int, updated_product: schemas.ProductCreate,  db: Session
     db.commit()
 
     return product_query.first()
+
