@@ -9,7 +9,6 @@ class UserOut(BaseModel):
     id: int
     email: EmailStr
     username: str
-
     class Config:
         orm_mode = True
 
@@ -31,7 +30,6 @@ class ProductBase(BaseModel):
 
 class Product(ProductBase):
     id: int
-
     class Config:
         orm_mode = True
 
@@ -54,8 +52,8 @@ class Sale(SaleBase):
 #     class Config:
 #         orm_mode = True
 
-class SaleCreate(SaleBase):
-    pass
+# class SaleCreate(SaleBase):
+#     pass
 
 class Token(BaseModel):
     access_token : str

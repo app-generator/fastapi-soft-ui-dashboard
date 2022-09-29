@@ -18,7 +18,7 @@ def get_sales(db: Session = Depends(get_db)):
     sales = db.query(models.Sale).all()
 
     if not sales:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='User Was Not Found')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Sale Was Not Found")
 
     return sales
 
