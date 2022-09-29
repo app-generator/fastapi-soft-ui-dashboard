@@ -37,7 +37,7 @@ def get_sale(id: int, db: Session = Depends(get_db), current_user: int = Depends
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Sale)
 def create_sale(sale: schemas.SaleCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
-    new_sale = models.Post(owner_id=current_user.id,**sale.dict())
+    new_sale = models.Sale(owner_id=current_user.id,**sale.dict())
 
     db.add(new_sale)
     db.commit()
@@ -64,7 +64,7 @@ def delete_sale(id: int, db: Session = Depends(get_db), current_user: int = Depe
 @router.put("/{id}", response_model=schemas.Sale)
 def update_sale(id: int, updated_sale: schemas.SaleCreate,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
-    sale_query = db.query(models.Post).filter(models.Post.id == id)
+    sale_query = db.query(models.Sale).filter(models.Sale.id == id)
 
     sale = sale_query.first()
 
