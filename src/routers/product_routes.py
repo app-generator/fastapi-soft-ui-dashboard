@@ -11,18 +11,18 @@ router = APIRouter(
     tags = ['Products']
 )
 
-@router.get("/", response_model=List[schemas.ProductOut])
+@router.get("/", response_model=List[schemas.Product])
 def get_products(db: Session = Depends(get_db)):
     
     products = db.query(models.Product).all()
 
     if not products:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='User Was Not Found')
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Product Was Not Found')
 
     return products
 
 
-@router.get("/{id}", response_model=schemas.ProductOut)
+@router.get("/{id}", response_model=schemas.Product)
 def get_product(id: int, db: Session = Depends(get_db)):
 
     product = db.query(models.Product).filter(models.Product.id == id).first()
@@ -67,10 +67,8 @@ def update_product(id: int, updated_product: schemas.ProductCreate,  db: Session
 
     product = product_query.first()
 
-
     if product == None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product was not found")
-
 
     product_query.update(updated_product.dict(), synchronize_session=False)
 

@@ -6,7 +6,7 @@ class User(Base):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    username = Column(String, nullable=False, unique=False)
+    username = Column(String, nullable=False)
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
 
@@ -15,8 +15,8 @@ class Product(Base):
     __tablename__ = 'products'
 
     id = Column(Integer, primary_key=True, nullable=False)
-    name = Column(String, nullable=False, unique=False)
-    description = Column(String, nullable=False, unique=True)
+    name = Column(String, nullable=False)
+    description = Column(String, nullable=False)
     price = Column(Float, nullable=False)
     currency = Column(String, nullable=False)
 
