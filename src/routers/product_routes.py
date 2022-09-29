@@ -4,7 +4,7 @@ from helpers.utils import hash
 from sqlalchemy.orm import Session
 from typing import List
 
-from src import oauth2, models, schemas
+import oauth2, models, schemas
 
 router = APIRouter(
     prefix = "/products",
@@ -12,7 +12,7 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=List[schemas.ProductOut])
-def get_products(db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def get_products(db: Session = Depends(get_db)):
     
     products = db.query(models.Product).all()
 
@@ -23,7 +23,7 @@ def get_products(db: Session = Depends(get_db), current_user: int = Depends(oaut
 
 
 @router.get("/{id}", response_model=schemas.ProductOut)
-def get_product(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+def get_product(id: int, db: Session = Depends(get_db)):
 
     product = db.query(models.Product).filter(models.Product.id == id).first()
 
@@ -36,7 +36,7 @@ def get_product(id: int, db: Session = Depends(get_db), current_user: int = Depe
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Product)
 def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
-    new_product = models.Post(owner_id=current_user.id,**product.dict())
+    new_product = models.Product(**product.dict())
 
     db.add(new_product)
     db.commit()
@@ -63,7 +63,7 @@ def delete_product(id: int, db: Session = Depends(get_db), current_user: int = D
 @router.put("/{id}", response_model=schemas.Product)
 def update_product(id: int, updated_product: schemas.ProductCreate,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
-    product_query = db.query(models.Post).filter(models.Post.id == id)
+    product_query = db.query(models.Product).filter(models.Product.id == id)
 
     product = product_query.first()
 

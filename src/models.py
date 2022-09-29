@@ -31,6 +31,5 @@ class Sale(Base):
     client = Column(String, nullable=False)
     
     product_id = Column(String, ForeignKey("products.id", ondelete="CASCADE"))
-
     product = relationship("Product")
     

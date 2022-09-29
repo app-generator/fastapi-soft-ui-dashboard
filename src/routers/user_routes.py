@@ -1,18 +1,18 @@
 from fastapi import status, HTTPException, Depends, APIRouter
-import models
-import schemas
-
+import models, schemas, oauth2
 from helpers.utils import hash
 from helpers.database import get_db
 from sqlalchemy.orm import Session
+
+from typing import List
 
 router = APIRouter(
     prefix = "/users",
     tags = ['Users']
 )
 
-@router.get('/', response_model=schemas.UserOut)
-def get_users(id: int, db: Session = Depends(get_db)):
+@router.get('/', response_model=List[schemas.UserOut])
+def get_users(db: Session = Depends(get_db)):
     users = db.query(models.User).all()
 
     if not users:

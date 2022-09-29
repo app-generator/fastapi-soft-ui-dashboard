@@ -42,12 +42,17 @@ class ProductOut(ProductBase):
         orm_mode = True
 
 
+class ProductCreate(ProductBase):
+    pass
+
+
+
 class SaleBase(BaseModel):
     state: str
     value: float
     fee: float
     currency: str
-    client: string
+    client: str
 
 class Sale(SaleBase):
     id: int
@@ -60,6 +65,8 @@ class SaleOut(SaleBase):
     class Config:
         orm_mode = True
 
+class SaleCreate(SaleBase):
+    pass
 
 class Token(BaseModel):
     access_token : str

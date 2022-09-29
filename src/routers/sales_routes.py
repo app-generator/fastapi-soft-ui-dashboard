@@ -4,7 +4,8 @@ from helpers.utils import hash
 from sqlalchemy.orm import Session
 from typing import List
 
-from src import oauth2, models, schemas
+import oauth2, models, schemas
+# from src import oauth2, models, schemas
 
 router = APIRouter(
     prefix = "/sales",
