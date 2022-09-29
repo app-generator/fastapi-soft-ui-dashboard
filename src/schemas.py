@@ -1,5 +1,9 @@
+from locale import currency
+import string
+from unicodedata import name
 from pydantic import BaseModel, EmailStr
 from typing import Optional
+
 
 class UserOut(BaseModel):
     id: int
@@ -17,6 +21,44 @@ class UserCreate(BaseModel):
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
+
+
+class ProductBase(BaseModel):
+    name: str
+    description: str
+    price: float
+    currency: str
+
+class Product(ProductBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+class ProductOut(ProductBase):
+    Product: Product
+
+    class Config:
+        orm_mode = True
+
+
+class SaleBase(BaseModel):
+    state: str
+    value: float
+    fee: float
+    currency: str
+    client: string
+
+class Sale(SaleBase):
+    id: int
+    class Config:
+        orm_mode = True
+
+class SaleOut(SaleBase):
+    Sale: Sale
+
+    class Config:
+        orm_mode = True
 
 
 class Token(BaseModel):

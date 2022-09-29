@@ -13,7 +13,7 @@ router = APIRouter(
 
 @router.get('/', response_model=schemas.UserOut)
 def get_users(id: int, db: Session = Depends(get_db)):
-    users = db.query(models.User).filter(models.User.id == id).first()
+    users = db.query(models.User).all()
 
     if not users:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='User Was Not Found')
