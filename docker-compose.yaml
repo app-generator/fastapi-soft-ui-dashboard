@@ -1,7 +1,7 @@
 version: "3"
 services:
   api:
-    # working_dir: /src
+    working_dir: /usr/src/app/src
     build: .
     ports:
       - 8000:8000
@@ -18,17 +18,17 @@ services:
     #   - SECRET_KEY=somesecretkey
     #   - ALGORITHM=HS256
     #   - ACCESS_TOKEN_EXPIRE_MINUTES=30
-    command: cd src && uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 #     depends_on:
-#       - postgres
+#       - mysql
 
-#   postgres:
-#     image: postgres
+#   mysql:
+#     image: mysql
 #     environment:
 #       - POSTGRES_PASSWORD=password123
 #       - POSTGRES_DB=fastapi
 #     volumes:
-#       - postgres-db:/var/lib/postgresql/data
+#       - mysql-db:/var/lib/mysqlql/data
 
 # volumes:
-#   postgres-db:
+#   mysql-db:

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-# import models
-from src import models
+import models
+# from src import models
 from helpers.database import engine
 from routers.auth.auth_routes import router as auth_router
 from routers.product_routes import router as product_router
