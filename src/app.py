@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
-import models
+# import models
+from src import models
 from helpers.database import engine
 from routers.auth.auth_routes import router as auth_router
 from routers.product_routes import router as product_router
@@ -15,3 +16,8 @@ app.include_router(auth_router)
 app.include_router(user_router)
 app.include_router(product_router)
 app.include_router(sales_router)
+
+
+@app.get("/")
+def root():
+    return {"message" : "Helo"}
