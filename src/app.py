@@ -7,7 +7,7 @@ from src.routers.product_routes import router as product_router
 from src.routers.user_routes import router as user_router
 from src.routers.sales_routes import router as sales_router
 
-models.Base.metadata.create_all(bind=engine)
+# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(debug=True, reload=True)
 

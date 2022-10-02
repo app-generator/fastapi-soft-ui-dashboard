@@ -11,7 +11,6 @@ class User(Base):
     email = Column(String, nullable=False, unique=True)
     password = Column(String, nullable=False)
 
-
 class Product(Base):
     __tablename__ = 'products'
 
