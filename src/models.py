@@ -1,4 +1,5 @@
-from helpers.database import Base
+from src.helpers.database import Base
+
 from sqlalchemy import Column, String, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 
