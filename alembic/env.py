@@ -12,7 +12,7 @@ from src.models import Base
 config = context.config
 config.set_main_option(
     # "sqlalchemy.url", "sqlite:///./src/sql_app.db"
-    "sqlalchemy.url", "sqlite:///../src/sql_app.db"
+    "sqlalchemy.url", "sqlite:///./src/sql_app.db"
     )
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
