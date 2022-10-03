@@ -109,3 +109,49 @@ def test_products(session):
     products = session.query(models.Product).all()
 
     return products
+
+
+@pytest.fixture
+def test_sales(session, test_products):
+    sales_data = [
+        {
+            "state": "Wisconsin",
+            # "description": "this is the sale number 1",
+            "value" : 100.44,
+            "fee" : 60.24,
+            "currency" : "us dollar",
+            "client" : "Poggly Woggly",
+            "product_id": test_products[0].id
+        },
+        {
+            "state": "Florida",
+            # "description": "this is the sale number 2",
+            "value" : 90.12,
+            "fee" : 69.99,
+            "currency" : "us dollar",
+            "client" : "Poggly Woggly",
+            "product_id": test_products[1].id
+        },
+        {
+            "state": "Florida",
+            # "description": "this is the sale number 3",
+            "value" : 290.44,
+            "fee" : 10.24,
+            "currency" : "us dollar",
+            "client" : "Christopher Jones",
+            "product_id": test_products[1].id
+        },   
+    ]
+
+    def create_sale_model(sale):
+        return models.Sale(**sale)
+
+    sales_map = map(create_sale_model, sales_data)
+    sales = list(sales_map)
+
+    session.add_all(sales)
+    session.commit()
+
+    sales = session.query(models.Product).all()
+
+    return sales

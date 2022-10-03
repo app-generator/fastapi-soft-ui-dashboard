@@ -9,21 +9,19 @@ def test_get_one_product(client, test_products):
     product = schemas.Product(**res.json())
 
     assert product.id == test_products[0].id
-    # assert product
-    # print (test_products)
+    assert res.status_code == 200
 
+def test_get_all_products(client, test_products):
+    res = client.get("/products/")
 
-# def test_get_all_products(client, test_products):
-#     res = client.get("/products/")
+    def validate(product):
+        return schemas.ProductBase(**product)
 
-#     def validate(product):
-#         return schemas.ProductBase(**product)
+    products_map = map(validate, res.json())
+    products_list = list(products_map)
 
-#     products_map = map(validate, res.json())
-#     products_list = list(products_map)
-
-    # assert len(res.json()) == len(test_products)
-    # assert res.status_code == 200
+    assert len(res.json()) == len(test_products)
+    assert res.status_code == 200
     
 
 def test_create_product(authorized_client):
