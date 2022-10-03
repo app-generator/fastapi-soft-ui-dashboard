@@ -10,8 +10,9 @@ from src.helpers.database import Base, get_db
 from src.config import settings
 from src.oauth2 import create_access_token
 
-SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}_test'
+
 SQLITE_DATABASE_URL = 'sqlite:///./sql_app_test.db'
+SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}_test'
 
 engine = create_engine(SQLITE_DATABASE_URL)
 
@@ -73,3 +74,38 @@ def authorized_client(client, token):
 
     return client
 
+@pytest.fixture
+def test_products(session):
+    products_data = [
+        {
+            "name" : "Product0",
+            "description" : "this is a yellow product",
+            "price" : 25.00,
+            "currency" : "us dollar"  
+        },
+        {
+            "name" : "Product1",
+            "description" : "this is a red product",
+            "price" : 55.99,
+            "currency" : "us dollar"  
+        },
+        {
+            "name" : "Product2",
+            "description" : "this is a yellow product",
+            "price" : 105.99,
+            "currency" : "us dollar"  
+        },   
+    ]
+
+    def create_product_model(product):
+        return models.Product(**product)
+
+    products_map = map(create_product_model, products_data)
+    products = list(products_map)
+
+    session.add_all(products)
+    session.commit()
+
+    products = session.query(models.Product).all()
+
+    return products
