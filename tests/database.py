@@ -11,7 +11,7 @@ from src.config import settings
 SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}_test'
 SQLITE_DATABASE_URL = 'sqlite:///./sql_app_test.db'
 
-engine = create_engine(SQLITE_DATABASE_URL)
+engine = create_engine(SQLITE_DATABASE_URL, connect_args={'check_same_thread': False})
 
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

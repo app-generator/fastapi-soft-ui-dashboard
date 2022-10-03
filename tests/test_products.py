@@ -5,22 +5,22 @@ from tests.conftest import authorized_client
 
 
 def test_get_one_product(client, test_products):
-    res = client.get(f"/products/{test_get_all_products[0].id}")
+    res = client.get(f"/products/{test_products[0].id}")
     product = schemas.Product(**res.json())
 
-    # assert product.id == test_products[0].id
+    assert product.id == test_products[0].id
     # assert product
-    print (test_products)
+    # print (test_products)
 
 
-def test_get_all_products(client, test_products):
-    res = client.get("/products/")
+# def test_get_all_products(client, test_products):
+#     res = client.get("/products/")
 
-    def validate(product):
-        return schemas.ProductBase(**product)
+#     def validate(product):
+#         return schemas.ProductBase(**product)
 
-    products_map = map(validate, res.json())
-    products_list = list(products_map)
+#     products_map = map(validate, res.json())
+#     products_list = list(products_map)
 
     # assert len(res.json()) == len(test_products)
     # assert res.status_code == 200

@@ -5,6 +5,7 @@ Revises:
 Create Date: 2022-10-01 21:17:55.768147
 
 """
+from enum import unique
 from alembic import op
 import sqlalchemy as sa
 
@@ -20,6 +21,7 @@ def upgrade() -> None:
     op.create_table('users',
         sa.Column('id', sa.Integer(), nullable=False, primary_key=True),
         sa.Column('username', sa.String(), nullable=False),
+        sa.Column('email', sa.String(), nullable=False, unique=True),
         sa.Column('password', sa.String(), nullable=False)
     ),
     op.create_table('products',
