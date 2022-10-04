@@ -27,12 +27,31 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 <br />
 
 ## How to used in `Docker`
+> Production Docker
+   - The default docker-compose.yaml file is to be used for production.
+   - This particular docker-compose houses the `mysql configuration`.
+   - in the root folder, enter the following command (without the quotes): `docker-compose up`.
+
+> Developerment Docker
+   - The docker-compose-dev.yaml file is to be used for Developerment.
+   - This particular docker-compose houses the `sqlite configuration`.
+   - in the root folder, enter the following command (without the quotes): `docker-compose -f docker-compose-dev.yaml`.
 
 @ToDo
 
 <br />
 
 ## The manual build
+> This application is composed of `3 basic parts` in the root folder.
+   1. src store the codebase for the main application.
+   2. alembic stores the database migration library.
+   3. tests stores the unit testing library.
+
+> The following are `steps on how to manually build the fastapi app`. All of the commands are to be entered in the root directory.
+   1. create a virtual environment with the following command (always without the quotes): `python -m venv venv`
+   2. activate the virtual environment, for linux/ubuntu: `source/bin/activate`, for windows `source/Scripts/activate`
+   3. install the dependencies: `pip install -r requirements.txt`
+   4. run the application `uvicorn src.app:app --reload`
 
 @ToDo
 
