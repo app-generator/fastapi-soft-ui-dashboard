@@ -51,7 +51,9 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
    1. create a virtual environment with the following command (always without the quotes): `python -m venv venv`
    2. activate the virtual environment, for linux/ubuntu: `source/bin/activate`, for windows `source/Scripts/activate`
    3. install the dependencies: `pip install -r requirements.txt`
-   4. run the application `uvicorn src.app:app --reload`
+   4. create a `.env` file, then copy and paste-in the contents of `.env.dist`, and fill in the configuration with your credentials.
+      > setting the `debugging` config to `1` will start the app with sqlite, setting it to `0` will start the app with mysql.  
+   5. run the application: `uvicorn src.app:app --reload`
 
 @ToDo
 
