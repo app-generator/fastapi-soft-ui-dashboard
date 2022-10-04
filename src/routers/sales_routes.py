@@ -15,7 +15,7 @@ router = APIRouter(
 )
 
 @router.get("/", response_model=List[schemas.Sale])
-def get_sales(db: Session = Depends(get_db)):
+async def get_sales(db: Session = Depends(get_db)):
     
     sales = db.query(models.Sale).all()
 
@@ -26,7 +26,7 @@ def get_sales(db: Session = Depends(get_db)):
 
 
 @router.get("/{id}", response_model=schemas.Sale)
-def get_sale(id: int, db: Session = Depends(get_db)):
+async def get_sale(id: int, db: Session = Depends(get_db)):
 
     sale = db.query(models.Sale).filter(models.Sale.id == id).first()
 
@@ -37,7 +37,7 @@ def get_sale(id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.Sale)
-def create_sale(sale: schemas.SaleBase, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+async def create_sale(sale: schemas.SaleBase, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     new_sale = models.Sale(**sale.dict())
 
@@ -49,7 +49,7 @@ def create_sale(sale: schemas.SaleBase, db: Session = Depends(get_db), current_u
 
 
 @router.delete("/{id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_sale(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+async def delete_sale(id: int, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     sale_query = db.query(models.Sale).filter(models.Sale.id == id)
 
@@ -64,7 +64,7 @@ def delete_sale(id: int, db: Session = Depends(get_db), current_user: int = Depe
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 @router.put("/{id}", response_model=schemas.Sale)
-def update_sale(id: int, updated_sale: schemas.SaleBase,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
+async def update_sale(id: int, updated_sale: schemas.SaleBase,  db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     sale_query = db.query(models.Sale).filter(models.Sale.id == id)
 
