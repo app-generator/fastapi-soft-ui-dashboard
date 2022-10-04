@@ -1,26 +1,26 @@
-version: "3"
+version: "3.8"
 services:
   api:
     working_dir: /usr/src/app/src
     build: .
     ports:
-      - 8000:8000
+      - 5085:5085
     volumes:
       - ./:/usr/app
-    # env_file:
-    #     - ./.env
-    # environment:
-    #   - DATABASE_HOSTNAME=hostname
-    #   - DATABASE_PORT=5432
-    #   - DATABASE_PASSWORD=password123
-    #   - DATABASE_NAME=database_name
-    #   - DATABASE_USERNAME=postgres
-    #   - SECRET_KEY=somesecretkey
-    #   - ALGORITHM=HS256
-    #   - ACCESS_TOKEN_EXPIRE_MINUTES=30
-    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
-#     depends_on:
-#       - mysql
+    env_file:
+        - ./.env
+    environment:
+      - DATABASE_HOSTNAME=hostname
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=password123
+      - DATABASE_NAME=database_name
+      - DATABASE_USERNAME=postgres
+      - SECRET_KEY=somesecretkey
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+    command: uvicorn app:app --host 0.0.0.0 --port 5085
+    depends_on:
+      - db
 
 #   mysql:
 #     image: mysql
@@ -32,3 +32,27 @@ services:
 
 # volumes:
 #   mysql-db:
+
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '8008:8008'
+    expose:
+      # Opens port 8008 on the container
+      - '8008'
+      # Where our data will be persisted
+    volumes:
+      - my-db:/var/lib/mysql
+# Names our volume
+volumes:
+  my-db:

@@ -8,7 +8,8 @@ from src.config import settings
 SQLITE_DATABASE_URL = "sqlite:///./src/sql_app.db"
 SQLALCHEMY_DATABASE_URL = "mysql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}"
 
-engine = create_engine(SQLITE_DATABASE_URL)
+# engine = create_engine(SQLITE_DATABASE_URL)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

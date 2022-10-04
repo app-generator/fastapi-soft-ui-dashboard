@@ -1,13 +1,9 @@
 from fastapi import FastAPI
 
-import src.models as models
-from src.helpers.database import engine
 from src.routers.auth.auth_routes import router as auth_router
 from src.routers.product_routes import router as product_router
 from src.routers.user_routes import router as user_router
 from src.routers.sales_routes import router as sales_router
-
-# models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(debug=True, reload=True)
 
