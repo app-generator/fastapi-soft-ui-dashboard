@@ -5,10 +5,8 @@ from sqlalchemy.orm import sessionmaker
 
 from src.app import app as root_app
 from src.helpers.database import get_db, Base
-from src.config import settings
 
 
-SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}_test'
 SQLITE_DATABASE_URL = 'sqlite:///./sql_app_test.db'
 
 engine = create_engine(SQLITE_DATABASE_URL, connect_args={'check_same_thread': False})

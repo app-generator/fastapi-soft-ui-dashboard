@@ -7,12 +7,10 @@ from sqlalchemy.ext.declarative import declarative_base
 from src import models
 from src.app import app as root_app
 from src.helpers.database import Base, get_db
-from src.config import settings
 from src.oauth2 import create_access_token
 
 
 SQLITE_DATABASE_URL = 'sqlite:///./sql_app_test.db'
-SQLALCHEMY_DATABASE_URL = f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}:{settings.database_port}/{settings.database_name}_test'
 
 engine = create_engine(SQLITE_DATABASE_URL, connect_args={'check_same_thread': False})
 
