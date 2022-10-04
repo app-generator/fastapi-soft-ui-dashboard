@@ -52,8 +52,15 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
    2. activate the virtual environment, for linux/ubuntu: `source/bin/activate`, for windows `source/Scripts/activate`
    3. install the dependencies: `pip install -r requirements.txt`
    4. create a `.env` file, then copy and paste-in the contents of `.env.dist`, and fill in the configuration with your credentials.
-      > setting the `debugging` config to `1` will start the app with sqlite, setting it to `0` will start the app with mysql.  
+         > setting the `debugging` config to `1` will start the app with sqlite, setting it to `0` will start the app with mysql.  
    5. run the application: `uvicorn src.app:app --reload`
+
+> The following are `steps on how to run unit testing`.
+   1. in the root directory: `pytest -v -s`
+
+> The following are `steps on how to migrate the structure of the database`
+   1. in the root directory: `alembic upgrade head`
+      > instead of `head` a version id can be supplied.  
 
 @ToDo
 
