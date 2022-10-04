@@ -9,8 +9,6 @@ services:
       - 5085:5085
     volumes:
       - ./:/usr/app
-    env_file:
-        - ./.env
     environment:
       - DATABASE_HOSTNAME=hostname
       - DATABASE_PORT=5432
