@@ -27,21 +27,23 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 <br />
 
 ## How to used in `Docker`
+
+> Development `Docker`
+
+- The docker-compose.yaml file is to be used for Development.
+- This particular docker-compose houses the `sqlite configuration`.
+- in the root folder, enter the following command (without the quotes): 
+  - `$ docker-compose up --build`.
+
 > Production Docker
    - The default docker-compose.yaml file is to be used for production.
    - This particular docker-compose houses the `mysql configuration`.
    - in the root folder, enter the following command (without the quotes): `docker-compose up`.
 
-> Developerment Docker
-   - The docker-compose-dev.yaml file is to be used for Developerment.
-   - This particular docker-compose houses the `sqlite configuration`.
-   - in the root folder, enter the following command (without the quotes): `docker-compose -f docker-compose-dev.yaml`.
-
-@ToDo
-
 <br />
 
 ## The manual build
+
 > This application is composed of `3 basic parts` in the root folder.
    1. src store the codebase for the main application.
    2. alembic stores the database migration library.
