@@ -6,35 +6,17 @@ services:
     working_dir: /usr/src/app
     build: .
     ports:
-      - 5085:5085
+      - 8000:8000
     volumes:
-      - ./:/usr/app
+      - ./:/usr/app/src
     environment:
       - DATABASE_HOSTNAME=hostname
       - DATABASE_PORT=5432
       - DATABASE_PASSWORD=password123
       - DATABASE_NAME=database_name
-      - DATABASE_USERNAME=nonrootuser
+      - DATABASE_USERNAME=root
       - SECRET_KEY=somesecretkey
       - ALGORITHM=HS256
       - ACCESS_TOKEN_EXPIRE_MINUTES=30
-      - DEBUGGING=0
-    command: uvicorn src.app:app --host 0.0.0.0 --port 5085
-    depends_on:
-      - db
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: 'db'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'password'
-      MYSQL_ROOT_PASSWORD: 'password'
-    ports:
-      - '8008:8008'
-    expose:
-      - '8008'
-    volumes:
-      - my-db:/var/lib/mysql
-volumes:
-  my-db:
+      - DEBUGGING=1
+    command: uvicorn src.app:app --host 0.0.0.0 --port 8000 --reload
