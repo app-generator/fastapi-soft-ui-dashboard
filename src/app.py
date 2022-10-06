@@ -1,4 +1,3 @@
-from re import TEMPLATE
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -23,7 +22,6 @@ app.add_middleware(
 )
 
 BASE_PATH = Path(__file__).resolve().parent
-# TEMPLATES = Jinja2Templates(directory="./src/templates/home")
 TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "templates"))
 
 
