@@ -10,6 +10,7 @@ from src.helpers.utils import verify
 
 
 router = APIRouter(
+    prefix = "/api/auth",
     tags=['Authentication']
 )
 

@@ -9,7 +9,7 @@ from src.helpers.database import get_db
 
 
 router = APIRouter(
-    prefix = "/products",
+    prefix = "/api/products",
     tags = ['Products']
 )
 

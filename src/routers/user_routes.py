@@ -10,7 +10,7 @@ from src.helpers.utils import hash
 
 
 router = APIRouter(
-    prefix = "/users",
+    prefix = "/api/users",
     tags = ['Users']
 )
 
