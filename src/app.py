@@ -11,6 +11,8 @@ from src.routers.user_routes import router as user_router
 from src.routers.sales_routes import router as sales_router
 
 app = FastAPI(debug=True, reload=True)
+app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
 
 origins = [
     "*"
@@ -18,7 +20,7 @@ origins = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins = origins
+    allow_origins = origins 
 )
 
 BASE_PATH = Path(__file__).resolve().parent
