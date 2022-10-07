@@ -1,3 +1,4 @@
+from os import name
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -20,4 +21,4 @@ def home(request: Request):
 
 @router.get("/login")
 def login(request: Request):
-    return TEMPLATES.TemplateResponse("accounts/index.html", {"request" : request})
+    return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
