@@ -65,21 +65,20 @@
 
                 {% else %}
 
-                  <form role="form text-left" method="post" action="">
+                  <form role="form text-left" method="post" action="/api/users">
 
-                    {{ form.hidden_tag() }}
 
                       <label>Username</label>
                       <div class="mb-3">
-                        {{ form.username(placeholder="Username", class="form-control") }}
+                        <input type="text" name="username" id="username" placeholder="username" class="form-control">
                       </div>
                       <label>Email</label>
                       <div class="mb-3">
-                        {{ form.email(placeholder="Email", class="input form-control", type="email") }}
+                        <input type="email" name="email" id="email" placeholder="Email" class="form-control">
                       </div>
                       <label>Password</label>
                       <div class="mb-3">
-                        {{ form.password(placeholder="Password", class="form-control", type="password") }}
+                        <input type="type" name="password" id="password" class="form-control">
                       </div>
 
                       <div class="text-center">

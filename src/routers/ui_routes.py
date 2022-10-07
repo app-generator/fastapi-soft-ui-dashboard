@@ -18,7 +18,10 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "../templates"))
 def home(request: Request, response_model=HTMLResponse):
     return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
 
-
 @router.get("/login")
 def login(request: Request, response_model=HTMLResponse):
     return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
+
+@router.get("/register")
+def register(request: Request, response_model=HTMLResponse):
+    return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
