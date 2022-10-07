@@ -65,7 +65,7 @@
 
                 {% else %}
 
-                  <form role="form text-left" method="post" action="/api/users">
+                  <form role="form text-left" method="post" action="{{ url_for('register') }}">
 
 
                       <label>Username</label>
@@ -86,7 +86,7 @@
                       </div>
 
                       <div class="text-center">
-                        <a href="" class="btn bg-gradient-secondary w-100 mt-4 mb-0">Sign IN</a>
+                        <a href="{{ url_for('login') }}" class="btn bg-gradient-secondary w-100 mt-4 mb-0">Sign IN</a>
                       </div>                
 
                   </form>

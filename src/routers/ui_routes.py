@@ -1,4 +1,3 @@
-from os import name
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
@@ -16,6 +15,7 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "../templates"))
 
 @router.get("/")
 def home(request: Request, response_model=HTMLResponse):
+
     return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
 
 @router.get("/login")
@@ -24,4 +24,12 @@ def login(request: Request, response_model=HTMLResponse):
 
 @router.get("/register")
 def register(request: Request, response_model=HTMLResponse):
+    return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
+
+@router.post("/register")
+async def register(request: Request):
+    data = await request.form()
+    print (data)
+    
+
     return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
