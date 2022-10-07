@@ -65,9 +65,7 @@
 
                 {% else %}
 
-                  <form role="form text-left" method="post" action="{{ url_for('register') }}">
-
-
+                  <form id="register_form" action="{{ url_for('create_user') }}" data-successful_redirect="{{ url_for('signin') }}" role="form text-left">
                       <label>Username</label>
                       <div class="mb-3">
                         <input type="text" name="username" id="username" placeholder="username" class="form-control">
@@ -86,11 +84,47 @@
                       </div>
 
                       <div class="text-center">
-                        <a href="{{ url_for('login') }}" class="btn bg-gradient-secondary w-100 mt-4 mb-0">Sign IN</a>
+                        <a href="{{ url_for('signin') }}" class="btn bg-gradient-secondary w-100 mt-4 mb-0">Sign IN</a>
                       </div>                
 
                   </form>
+                  <script>
+                    let register_form = document.querySelector('#register_form')
 
+                    register_form.addEventListener('submit', async function(event){
+                      event.preventDefault()
+                      let form_action = register_form.action
+                      let email = register_form.querySelector('#email').value
+                      let username = register_form.querySelector('#username').value
+                      let password = register_form.querySelector('#password').value
+
+                      let new_user = {
+                        'email' : email,
+                        'username' : username,
+                        'password' : password
+                      }
+
+                      fetch(form_action, {
+                        method: "POST",
+                        headers: {'Content-Type' : 'application/json'},
+                        body: JSON.stringify(new_user)
+
+                      }).then(res => {
+                        console.log(res.status)
+                        if (res.status==201){
+                          register_form.reset()
+                          alert('success, now signin')
+                          window.location.href = register_form.dataset.successful_redirect
+                        } else {
+                          alert('something went wrong')
+                        }
+                        
+                      })
+
+                    })
+
+
+                  </script>
                 {% endif %}
 
               </div>

@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-body">
 
-                  <form role="form text-left" method="post" action="/api/auth">
+                  <form role="form text-left" method="post" action="{{ url_for('login') }}">
                     
                     <label>Username</label>
                     <div class="mb-3">
@@ -55,7 +55,7 @@
                     </div>
 
                     <div class="text-center">
-                      <a href="" class="btn bg-gradient-secondary w-100 mt-4 mb-0">Sign UP</a>
+                      <a href="{{ url_for('register')}}" class="btn bg-gradient-secondary w-100 mt-4 mb-0">Sign UP</a>
                     </div>
 
                   </form>
