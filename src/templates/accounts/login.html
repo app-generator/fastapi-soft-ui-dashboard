@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-body">
 
-                  <form id="login_form" role="form text-left" method="post" action="{{ url_for('login') }}">
+                  <form id="login_form" role="form text-left" method="post" action="{{ url_for('login') }}" data-successful_redirect="{{ url_for('home') }}">
                     
                     <label>Username</label>
                     <div class="mb-3">
@@ -67,7 +67,6 @@
                       
                       let email = login_form.querySelector('#username').value
                       let password = login_form.querySelector('#password').value
-                      // let form_action = login_form.action
 
                       let bodyFormData = new FormData()
   
@@ -85,40 +84,13 @@
                       })
 
                       if (res.status == 200){
-                        
+                        login_form.reset()
+                        let data = await res.json()
+                        let access_token = data.access_token
+                        window.localStorage.setItem('current_user', access_token)
+                        window.location.href = login_form.dataset.successful_redirect
                       }
-                      console.log(res)
-                      console.log(res.status)
-                      // console.log(res.json())
-                      console.log(await res.json())
-
-                      // fetch(login_form.action, {
-                      //   method: "POST",
-                      //   body: bodyFormData
-                      // }).then(res => {
-                      //   if (res.status==200){
-                      //     login_form.reset()
-                      //     // alert('successfully logged in')
-                      //     let access_token = res.json()
-                      //     console.log(access_token)
-                      //     // console.log(access_token.access_token)
-                          
-                      //     let 
-
-
-                      //     // window.location.href = 
-                      //   } else {
-                      //     alert ('something went wrong')
-                      //   }
-                      // })
-
                     })
-
-
-                    // fetch
-
-
-                    
 
                   </script>
                 </div>
