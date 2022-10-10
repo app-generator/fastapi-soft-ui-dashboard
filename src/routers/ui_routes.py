@@ -24,12 +24,12 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "../templates"))
 @router.get("/", status_code=status.HTTP_200_OK)
 async def home(request: Request, response_model=HTMLResponse):
 
-    token = request.headers.get('Authorization')
+    print ('\n\n\n')
+    print ('HOME HEADERS')
+    print (request.headers)
+    print ('\n\n\n')
 
-    if (token):
-        return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
-
-    return RedirectResponse(url=router.url_path_for('signin'))
+    return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
 
 
 
@@ -38,7 +38,7 @@ async def signin(request: Request, response_model=HTMLResponse):
     return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
 
 @router.post("/login", status_code=status.HTTP_200_OK)
-async def signin(request: Request, response_model=HTMLResponse):
+async def signin(request: Request):
     form = await request.form()
     form = form._dict
     form.pop('login')
@@ -53,6 +53,15 @@ async def signin(request: Request, response_model=HTMLResponse):
     if (response.status_code==200):
         data = response.json()
         token = data['access_token']
+        headers = {
+            'Authorization': f'Bearer {token}',
+        }
+        print (headers)
+        # print (headers)
+        redirect = RedirectResponse(url='/')
+        redirect.status_code = 302
+        redirect.headers.append('authorization', f'Bearer {token}')
+        return redirect
 
     return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
 
