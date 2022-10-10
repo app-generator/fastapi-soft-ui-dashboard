@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-body">
 
-                  <form id="login_form" role="form text-left" method="post" action="{{ url_for('login') }}" data-successful_redirect="{{ url_for('home') }}">
+                  <form id="login_form" role="form text-left" method="POST" action="{{ url_for('signin') }}" data-successful_redirect="{{ url_for('home') }}">
                     
                     <label>Username</label>
                     <div class="mb-3">
@@ -59,7 +59,7 @@
                     </div>
 
                   </form>
-                  <script>
+                  <!-- <script>
                     let login_form = document.querySelector('#login_form')
 
                     login_form.addEventListener('submit', async function(event){
@@ -95,7 +95,7 @@
                       }
                     })
 
-                  </script>
+                  </script> -->
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">

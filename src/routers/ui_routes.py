@@ -1,8 +1,11 @@
+import requests as url_requests
 from fastapi import APIRouter, Request, Depends, status, Response, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
+import http3
+
 
 import src.oauth2 as oauth2
 from src.config import Settings
@@ -32,10 +35,24 @@ async def home(request: Request, response_model=HTMLResponse):
 
 @router.get("/login", status_code=status.HTTP_200_OK)
 async def signin(request: Request, response_model=HTMLResponse):
+    return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
 
-    print('\n\n')
-    print(request.method)
-    print('\n\n')
+@router.post("/login", status_code=status.HTTP_200_OK)
+async def signin(request: Request, response_model=HTMLResponse):
+    form = await request.form()
+    form = form._dict
+    form.pop('login')
+    
+    base_url = request.base_url
+    login_url = app.auth_router.url_path_for('login')
+    request_url = base_url.__str__() + login_url.__str__()[1:]
+
+    http3client = http3.AsyncClient()
+    response = await http3client.post(request_url, data=form)
+
+    if (response.status_code==200):
+        data = response.json()
+        token = data['access_token']
 
     return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
 
