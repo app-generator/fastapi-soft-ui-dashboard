@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-body">
 
-                  <form role="form text-left" method="post" action="{{ url_for('login') }}">
+                  <form id="login_form" role="form text-left" method="post" action="{{ url_for('login') }}">
                     
                     <label>Username</label>
                     <div class="mb-3">
@@ -59,7 +59,68 @@
                     </div>
 
                   </form>
+                  <script>
+                    let login_form = document.querySelector('#login_form')
 
+                    login_form.addEventListener('submit', async function(event){
+                      event.preventDefault()
+                      
+                      let email = login_form.querySelector('#username').value
+                      let password = login_form.querySelector('#password').value
+                      // let form_action = login_form.action
+
+                      let bodyFormData = new FormData()
+  
+                      bodyFormData.append(
+                        'username', email
+                      )
+  
+                      bodyFormData.append(
+                        'password', password
+                      )
+
+                      let res = await fetch(login_form.action, {
+                        method: "POST",
+                        body: bodyFormData
+                      })
+
+                      if (res.status == 200){
+                        
+                      }
+                      console.log(res)
+                      console.log(res.status)
+                      // console.log(res.json())
+                      console.log(await res.json())
+
+                      // fetch(login_form.action, {
+                      //   method: "POST",
+                      //   body: bodyFormData
+                      // }).then(res => {
+                      //   if (res.status==200){
+                      //     login_form.reset()
+                      //     // alert('successfully logged in')
+                      //     let access_token = res.json()
+                      //     console.log(access_token)
+                      //     // console.log(access_token.access_token)
+                          
+                      //     let 
+
+
+                      //     // window.location.href = 
+                      //   } else {
+                      //     alert ('something went wrong')
+                      //   }
+                      // })
+
+                    })
+
+
+                    // fetch
+
+
+                    
+
+                  </script>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-sm mx-auto">

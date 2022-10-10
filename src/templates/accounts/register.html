@@ -110,16 +110,31 @@
                         body: JSON.stringify(new_user)
 
                       }).then(res => {
-                        console.log(res.status)
                         if (res.status==201){
                           register_form.reset()
                           alert('success, now signin')
                           window.location.href = register_form.dataset.successful_redirect
                         } else {
-                          alert('something went wrong')
+                          alert('bad credentials')
                         }
                         
                       })
+                      
+                      // fetch(form_action, {
+                      //   method: "POST",
+                      //   headers: {'Content-Type' : 'application/json'},
+                      //   body: JSON.stringify(new_user)
+
+                      // }).then(res => {
+                      //   if (res.status==201){
+                      //     register_form.reset()
+                      //     alert('success, now signin')
+                      //     window.location.href = register_form.dataset.successful_redirect
+                      //   } else {
+                      //     alert('bad credentials')
+                      //   }
+                        
+                      // })
 
                     })
 
