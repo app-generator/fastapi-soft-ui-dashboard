@@ -84,11 +84,14 @@
                       })
 
                       if (res.status == 200){
-                        login_form.reset()
+                        // login_form.reset()
                         let data = await res.json()
                         let access_token = data.access_token
                         window.localStorage.setItem('current_user', access_token)
+                        // Headers.setItem('Authorization', `Bearer ${access_token}`)
+                        Headers.set('Authorization', `Bearer ${access_token}`)
                         window.location.href = login_form.dataset.successful_redirect
+                        // Headers.set
                       }
                     })
 
@@ -103,7 +106,7 @@
             </div>
             <div class="col-md-6">
               <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
-                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url({{url_for('static', path='/img/curved-images/curved6.jpg') }}')"></div>
+                <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image: url({{url_for('static', path='/img/curved-images/curved6.jpg')}})"></div>
               </div>
             </div>
           </div>
