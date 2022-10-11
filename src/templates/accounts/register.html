@@ -65,7 +65,7 @@
 
                 {% else %}
 
-                  <form id="register_form" action="{{ url_for('create_user') }}" data-successful_redirect="{{ url_for('signin') }}" role="form text-left">
+                  <form  method="POST" action="{{ url_for('register') }}" role="form text-left">
                       <label>Username</label>
                       <div class="mb-3">
                         <input type="text" name="username" id="username" placeholder="username" class="form-control">
@@ -92,18 +92,18 @@
                     let register_form = document.querySelector('#register_form')
 
                     register_form.addEventListener('submit', async function(event){
-                      event.preventDefault()
+                      /* event.preventDefault() */
                       return
-                      let form_action = register_form.action
-                      let email = register_form.querySelector('#email').value
-                      let username = register_form.querySelector('#username').value
-                      let password = register_form.querySelector('#password').value
+                      /* let form_action = register_form.action */
+                      /* let email = register_form.querySelector('#email').value */
+                      /* let username = register_form.querySelector('#username').value */
+                      /* let password = register_form.querySelector('#password').value */
 
-                      let new_user = {
+                      /* let new_user = {
                         'email' : email,
                         'username' : username,
                         'password' : password
-                      }
+                      } */
 
                       fetch(form_action, {
                         method: "POST",
