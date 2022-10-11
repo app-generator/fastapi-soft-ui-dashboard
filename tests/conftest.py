@@ -48,7 +48,7 @@ def test_user(client):
         "password" : "password123" 
     }
 
-    res = client.post("/users/", json=user_data)
+    res = client.post("/api/users/", json=user_data)
 
     assert res.status_code == 201
 
@@ -114,7 +114,6 @@ def test_sales(session, test_products):
     sales_data = [
         {
             "state": "Wisconsin",
-            # "description": "this is the sale number 1",
             "value" : 100.44,
             "fee" : 60.24,
             "currency" : "us dollar",
@@ -123,7 +122,6 @@ def test_sales(session, test_products):
         },
         {
             "state": "Florida",
-            # "description": "this is the sale number 2",
             "value" : 90.12,
             "fee" : 69.99,
             "currency" : "us dollar",
@@ -132,7 +130,6 @@ def test_sales(session, test_products):
         },
         {
             "state": "Florida",
-            # "description": "this is the sale number 3",
             "value" : 290.44,
             "fee" : 10.24,
             "currency" : "us dollar",

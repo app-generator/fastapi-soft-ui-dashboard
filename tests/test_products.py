@@ -5,14 +5,14 @@ from tests.conftest import authorized_client
 
 
 def test_get_one_product(client, test_products):
-    res = client.get(f"/products/{test_products[0].id}")
+    res = client.get(f"/api/products/{test_products[0].id}")
     product = schemas.Product(**res.json())
 
     assert product.id == test_products[0].id
     assert res.status_code == 200
 
 def test_get_all_products(client, test_products):
-    res = client.get("/products/")
+    res = client.get("/api/products/")
 
     def validate(product):
         return schemas.ProductBase(**product)
@@ -26,7 +26,7 @@ def test_get_all_products(client, test_products):
 
 def test_create_product(authorized_client):
     res = authorized_client.post(
-        "/products/", json={
+        "/api/products/", json={
             "name" : "Product0",
             "description" : "this is the description",
             "price" : 25.44,
@@ -38,7 +38,7 @@ def test_create_product(authorized_client):
 
 def test_unauthorized_create_product(client):
     res = client.post(
-        "/products/", json={
+        "/api/products/", json={
             "name" : "Product0",
             "description" : "this is the description",
             "price" : 25.44,

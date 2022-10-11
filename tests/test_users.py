@@ -5,7 +5,7 @@ from src.config import settings
 from tests.conftest import test_user
 
 def test_create_user(client):
-    res = client.post("/users/", json={
+    res = client.post("api/users/", json={
         "username" : "Testy",
         "email" : "testy@gmail.com",
         "password" : "password123" 
@@ -16,7 +16,7 @@ def test_create_user(client):
     assert res.status_code == 201
 
 def test_login_user(client, test_user):
-    res = client.post("/login", data={
+    res = client.post("/api/auth/login", data={
         "username" : test_user['email'],
         "password" : test_user['password']
     })

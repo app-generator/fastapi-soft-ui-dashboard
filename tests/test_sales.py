@@ -3,7 +3,7 @@ import pytest
 import src.schemas as schemas
 
 def test_get_one_sale(client, test_sales):
-    res = client.get(f"/sales/{test_sales[0].id}")
+    res = client.get(f"/api/sales/{test_sales[0].id}")
     sale = schemas.Sale(**res.json())
 
     assert sale.id == test_sales[0].id
@@ -11,7 +11,7 @@ def test_get_one_sale(client, test_sales):
 
 
 def test_get_all_sales(client, test_sales):
-    res = client.get("/sales/")
+    res = client.get("/api/sales/")
 
     def validate(sale):
         return schemas.SaleBase(**sale)
@@ -25,7 +25,7 @@ def test_get_all_sales(client, test_sales):
 
 def test_create_sale(authorized_client, test_products):
     res = authorized_client.post(
-        "/sales/", json={
+        "/api/sales/", json={
             "state": "Florida",
             "value" : 100.44,
             "fee" : 60.24,
@@ -38,7 +38,7 @@ def test_create_sale(authorized_client, test_products):
 
 def test_unauthorized_create_sale(client, test_products):
     res = client.post(
-        "/sales/", json={
+        "/api/sales/", json={
             "state": "Florida",
             "description": "state is updated",
             "value" : 100.44,
