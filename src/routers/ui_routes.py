@@ -58,10 +58,7 @@ async def signin(request: Request):
 
         redirect = RedirectResponse(url=router.url_path_for('home'))
         redirect.status_code = 302
-        # redirect.delete_cookie('Authorization')
         redirect.set_cookie('Authorization', f'Bearer {token}')
-        # redirect._headers = headers
-
         return redirect
 
     return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
