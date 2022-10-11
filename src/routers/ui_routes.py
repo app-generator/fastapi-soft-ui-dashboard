@@ -8,7 +8,7 @@ import http3
 
 import src.oauth2 as oauth2
 from src.config import Settings
-from src import models
+from src import models, schemas
 from src import app
 
 
@@ -74,32 +74,19 @@ async def register(request: Request, response_model=HTMLResponse):
     form = form._dict
     form.pop('register')
 
+    #validates the form data
     new_user = models.User(**form)
 
     base_url = request.base_url
-    login_url = app.user_router.url_path_for('create_user')
-    request_url = base_url.__str__() + login_url.__str__()[1:]
+    create_user_url = app.user_router.url_path_for('create_user')
+    request_url = base_url.__str__() + create_user_url.__str__()[1:]
     http3client = http3.AsyncClient()
-    response = await http3client.post(request_url, data=form)
+    response = await http3client.post(request_url, json=form)
 
-    if (response.status_code==200):
-        data = response.json()
-        token = data['access_token']
-
-        redirect = RedirectResponse(url=router.url_path_for('home'))
+    if (response.status_code==201):
+        redirect = RedirectResponse(url=router.url_path_for('signin'))
         redirect.status_code = 302
-        redirect.set_cookie('Authorization', f'Bearer {token}')
         return redirect
-
-
-
-    print ('\n\n')
-    print(new_user.id)
-    print(new_user.email)
-    # print (form)
-    print ('\n\n')
-
-
 
     return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
 
