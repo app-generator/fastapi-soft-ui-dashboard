@@ -93,6 +93,7 @@
 
                     register_form.addEventListener('submit', async function(event){
                       event.preventDefault()
+                      return
                       let form_action = register_form.action
                       let email = register_form.querySelector('#email').value
                       let username = register_form.querySelector('#username').value
@@ -120,24 +121,6 @@
                         
                       })
                       
-                      // fetch(form_action, {
-                      //   method: "POST",
-                      //   headers: {'Content-Type' : 'application/json'},
-                      //   body: JSON.stringify(new_user)
-
-                      // }).then(res => {
-                      //   if (res.status==201){
-                      //     register_form.reset()
-                      //     alert('success, now signin')
-                      //     window.location.href = register_form.dataset.successful_redirect
-                      //   } else {
-                      //     alert('bad credentials')
-                      //   }
-                        
-                      // })
-
-                    })
-
 
                   </script>
                 {% endif %}

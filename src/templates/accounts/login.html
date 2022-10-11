@@ -88,10 +88,7 @@
                         let data = await res.json()
                         let access_token = data.access_token
                         window.localStorage.setItem('current_user', access_token)
-                        // Headers.setItem('Authorization', `Bearer ${access_token}`)
-                        Headers.set('Authorization', `Bearer ${access_token}`)
                         window.location.href = login_form.dataset.successful_redirect
-                        // Headers.set
                       }
                     })
 

@@ -45,9 +45,7 @@ async def signin(request: Request):
     
     base_url = request.base_url
     login_url = app.auth_router.url_path_for('login')
-    home_url = app.ui_router.url_path_for('home')
     request_url = base_url.__str__() + login_url.__str__()[1:]
-    home_url = base_url.__str__() + home_url.__str__()[1:]
 
     http3client = http3.AsyncClient()
     response = await http3client.post(request_url, data=form)
@@ -71,4 +69,11 @@ async def register(request: Request, response_model=HTMLResponse):
 
 @router.post("/register", status_code=status.HTTP_200_OK)
 async def register(request: Request, response_model=HTMLResponse):
+    data = await request.json()
+    print ('\n\n')
+    print (data)
+    print ('\n\n')
+
+
+
     return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
