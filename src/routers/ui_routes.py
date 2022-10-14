@@ -90,3 +90,23 @@ async def register(request: Request, response_model=HTMLResponse):
 
     return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
 
+@router.get('/tables', status_code=status.HTTP_200_OK)
+def tables(request: Request):
+    return TEMPLATES.TemplateResponse("home/tables.html", {"request" : request})
+
+
+@router.get('/billing', status_code=status.HTTP_200_OK)
+def billing(request: Request):
+    return TEMPLATES.TemplateResponse("home/billing.html", {"request" : request})
+
+@router.get('/virtual-reality', status_code=status.HTTP_200_OK)
+def virtual_reality(request: Request):
+    return TEMPLATES.TemplateResponse("home/virtual-reality.html", {"request" : request})
+
+@router.get('/profile', status_code=status.HTTP_200_OK)
+def profile(request: Request):
+    return TEMPLATES.TemplateResponse("home/profile.html", {"request" : request})
+
+@router.get('/rtl', status_code=status.HTTP_200_OK)
+def rtl(request: Request):
+    return TEMPLATES.TemplateResponse("home/rtl.html", {"request" : request})
