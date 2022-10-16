@@ -20,7 +20,7 @@
   <main class="main-content  mt-0">
 
     <section class="min-vh-100 mb-8">
-      <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url("{{ url_for('static', path='img/curved-images/curved14.jpg')  }}">
+      <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url({{url_for('static', path='/img/curved-images/curved14.jpg')}})">
         <span class="mask bg-gradient-dark opacity-6"></span>
         <div class="container">
           <div class="row justify-content-center">
@@ -68,15 +68,37 @@
                   <form  method="POST" action="{{ url_for('register') }}" role="form text-left">
                       <label>Username</label>
                       <div class="mb-3">
-                        <input type="text" name="username" id="username" placeholder="username" class="form-control">
+                        <input
+                          id="username"
+                          class="form-control"
+                          type="text"
+                          name="username"
+                          placeholder="Username"
+                          type="text"
+                          required
+                        >
                       </div>
                       <label>Email</label>
                       <div class="mb-3">
-                        <input type="email" name="email" id="email" placeholder="Email" class="form-control">
+                        <input
+                          id="email"
+                          class="form-control"
+                          type="email"
+                          name="email"
+                          placeholder="Email"
+                          required
+                        >
                       </div>
                       <label>Password</label>
                       <div class="mb-3">
-                        <input type="type" name="password" id="password" class="form-control">
+                        <input
+                          id="password"
+                          class="form-control"
+                          type="password"
+                          name="password"
+                          placeholder="Password"
+                          required
+                        >
                       </div>
 
                       <div class="text-center">
