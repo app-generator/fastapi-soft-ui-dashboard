@@ -1,4 +1,6 @@
-from fastapi import APIRouter, Depends, status, Response, HTTPException
+from fastapi import APIRouter, Depends, status, Response, HTTPException, Request
+from fastapi.responses import RedirectResponse
+from fastapi.responses import HTMLResponse
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
@@ -31,3 +33,16 @@ async def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Ses
             "access_token" : access_token,
             "token_type" : "bearer"
         }
+
+
+@router.post('/logout', response_model=schemas.Token)
+async def logout(request: Request, response_model=HTMLResponse):
+    auth_token  = request.cookies.get('Authorization')
+
+    if (auth_token):
+        request.cookies.pop('Authorization')
+        
+        return RedirectResponse(router.url_path_for('signin'))
+        # verify = oauth2.get_current_user(auth_token)    
+
+    return RedirectResponse(router.url_path_for('home'))    
