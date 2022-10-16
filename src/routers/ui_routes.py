@@ -28,7 +28,6 @@ async def home(request: Request, response_model=HTMLResponse, db: Session = Depe
 
     if (auth_token):
         token_type, jwt_token = auth_token.split(' ')
-        redirect = RedirectResponse(router.url_path_for('signin'))
         oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
         return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
 
@@ -95,21 +94,64 @@ async def register(request: Request, response_model=HTMLResponse):
 
 @router.get('/tables', status_code=status.HTTP_200_OK)
 def tables(request: Request):
-    return TEMPLATES.TemplateResponse("home/tables.html", {"request" : request})
+
+    auth_token  = request.cookies.get('Authorization')
+
+    if (auth_token):
+        token_type, jwt_token = auth_token.split(' ')
+        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
+        return TEMPLATES.TemplateResponse("home/tables.html", {"request" : request})
+
+    return RedirectResponse(router.url_path_for('signin'))    
+
+
 
 
 @router.get('/billing', status_code=status.HTTP_200_OK)
 def billing(request: Request):
-    return TEMPLATES.TemplateResponse("home/billing.html", {"request" : request})
+    auth_token  = request.cookies.get('Authorization')
+
+    if (auth_token):
+        token_type, jwt_token = auth_token.split(' ')
+        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
+        return TEMPLATES.TemplateResponse("home/billing.html", {"request" : request})
+
+    return RedirectResponse(router.url_path_for('signin'))    
 
 @router.get('/virtual-reality', status_code=status.HTTP_200_OK)
 def virtual_reality(request: Request):
-    return TEMPLATES.TemplateResponse("home/virtual-reality.html", {"request" : request})
+    auth_token  = request.cookies.get('Authorization')
+
+    if (auth_token):
+        token_type, jwt_token = auth_token.split(' ')
+        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
+        return TEMPLATES.TemplateResponse("home/virtual-reality.html", {"request" : request})
+
+    return RedirectResponse(router.url_path_for('signin'))    
+
+
 
 @router.get('/profile', status_code=status.HTTP_200_OK)
 def profile(request: Request):
-    return TEMPLATES.TemplateResponse("home/profile.html", {"request" : request})
+
+    auth_token  = request.cookies.get('Authorization')
+
+    if (auth_token):
+        token_type, jwt_token = auth_token.split(' ')
+        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
+        return TEMPLATES.TemplateResponse("home/profile.html", {"request" : request})
+
+    return RedirectResponse(router.url_path_for('signin'))    
+
+
 
 @router.get('/rtl', status_code=status.HTTP_200_OK)
 def rtl(request: Request):
-    return TEMPLATES.TemplateResponse("home/rtl.html", {"request" : request})
+    auth_token  = request.cookies.get('Authorization')
+
+    if (auth_token):
+        token_type, jwt_token = auth_token.split(' ')
+        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
+        return TEMPLATES.TemplateResponse("home/rtl.html", {"request" : request})
+
+    return RedirectResponse(router.url_path_for('signin'))    
