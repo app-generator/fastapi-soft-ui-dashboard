@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.responses import HTMLResponse
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+from src import app 
 
 import src.schemas as schemas
 import src.models as models
@@ -34,15 +35,14 @@ async def login(user_credentials: OAuth2PasswordRequestForm = Depends(), db: Ses
             "token_type" : "bearer"
         }
 
-
-@router.post('/logout', response_model=schemas.Token)
+@router.get('/logout', response_model=schemas.Token)
 async def logout(request: Request, response_model=HTMLResponse):
     auth_token  = request.cookies.get('Authorization')
 
     if (auth_token):
-        request.cookies.pop('Authorization')
-        
-        return RedirectResponse(router.url_path_for('signin'))
-        # verify = oauth2.get_current_user(auth_token)    
+        redirect = RedirectResponse(app.ui_router.url_path_for('signin'))
+        redirect.set_cookie('Authorization', '')
+        return redirect
 
-    return RedirectResponse(router.url_path_for('home'))    
+    return RedirectResponse(app.ui_router.url_path_for('home'))    
+

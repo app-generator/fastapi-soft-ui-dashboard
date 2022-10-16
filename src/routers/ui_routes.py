@@ -1,10 +1,12 @@
-import requests as url_requests
 from fastapi import APIRouter, Request, Depends, status, Response, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from pathlib import Path
 import http3
+
+from sqlalchemy.orm import Session
+from src.helpers.database import get_db
 
 import src.oauth2 as oauth2
 from src.config import Settings
@@ -21,16 +23,16 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "../templates"))
 
 
 @router.get("/", status_code=status.HTTP_200_OK)
-async def home(request: Request, response_model=HTMLResponse):
-
+async def home(request: Request, response_model=HTMLResponse, db: Session = Depends(get_db)):
     auth_token  = request.cookies.get('Authorization')
+
     if (auth_token):
-        # verify = oauth2.get_current_user(auth_token)
+        token_type, jwt_token = auth_token.split(' ')
+        redirect = RedirectResponse(router.url_path_for('signin'))
+        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
         return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
 
     return RedirectResponse(router.url_path_for('signin'))    
-
-
 
 
 @router.get("/login", status_code=status.HTTP_200_OK)
@@ -85,6 +87,7 @@ async def register(request: Request, response_model=HTMLResponse):
 
     if (response.status_code==201):
         redirect = RedirectResponse(url=router.url_path_for('signin'))
+        # default redirect is 307, which maintains the reused 'POST' indictation, 302 changes it to 'GET'
         redirect.status_code = 302
         return redirect
 
