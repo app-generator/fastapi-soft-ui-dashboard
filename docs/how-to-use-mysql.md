@@ -1,5 +1,5 @@
 # How to create initial DB
 
-@todo - SQLite
+@todo - MySql
 
 
