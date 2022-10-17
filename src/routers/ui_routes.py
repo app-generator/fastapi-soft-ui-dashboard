@@ -25,7 +25,7 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "../templates"))
 
 @router.get("/", status_code=status.HTTP_200_OK)
 @oauth2.auth_required
-async def home(request: Request, response_model=HTMLResponse, db: Session = Depends(get_db)):
+async def home(request: Request, response_model=HTMLResponse):
     return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
 
 
