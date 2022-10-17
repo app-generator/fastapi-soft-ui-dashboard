@@ -1,14 +1,18 @@
 from datetime import datetime, timedelta
+from urllib.request import Request
 from fastapi import Depends, status, HTTPException
 from fastapi.security import OAuth2PasswordBearer
+from fastapi.responses import RedirectResponse
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 
+from src import app
 from src.config import settings
 from src.helpers import database
 import src.models as models
 import src.schemas as schemas
 
+from functools import wraps
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -35,7 +39,7 @@ def verify_access_token(token: str, credentials_exception):
 
         if id is None:
             raise credentials_exception
-
+            
         token_data = schemas.TokenData(id=id)
 
         
@@ -59,4 +63,13 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     return user
 
 
-# def AuthRequired():
+def auth_required(router):
+    @wraps(router)
+    def authorize_cookie(**kwargs):
+        auth_token = kwargs['request'].cookies.get('Authorization')
+        if (auth_token):
+            token_type, jwt_token = auth_token.split(' ')
+            verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
+            return router(**kwargs)        
+        return RedirectResponse(app.ui_router.url_path_for('signin'))    
+    return authorize_cookie

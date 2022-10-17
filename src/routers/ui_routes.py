@@ -1,3 +1,4 @@
+from wsgiref.handlers import read_environ
 from fastapi import APIRouter, Request, Depends, status, Response, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.responses import HTMLResponse
@@ -8,10 +9,10 @@ import http3
 from sqlalchemy.orm import Session
 from src.helpers.database import get_db
 
+from src import app
 import src.oauth2 as oauth2
 from src.config import Settings
 from src import models, schemas
-from src import app
 
 
 router = APIRouter(
@@ -23,15 +24,9 @@ TEMPLATES = Jinja2Templates(directory=str(BASE_PATH / "../templates"))
 
 
 @router.get("/", status_code=status.HTTP_200_OK)
+@oauth2.auth_required
 async def home(request: Request, response_model=HTMLResponse, db: Session = Depends(get_db)):
-    auth_token  = request.cookies.get('Authorization')
-
-    if (auth_token):
-        token_type, jwt_token = auth_token.split(' ')
-        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
-        return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
-
-    return RedirectResponse(router.url_path_for('signin'))    
+    return TEMPLATES.TemplateResponse("home/index.html", {"request" : request})
 
 
 @router.get("/login", status_code=status.HTTP_200_OK)
@@ -93,65 +88,31 @@ async def register(request: Request, response_model=HTMLResponse):
     return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
 
 @router.get('/tables', status_code=status.HTTP_200_OK)
+@oauth2.auth_required
 def tables(request: Request):
-
-    auth_token  = request.cookies.get('Authorization')
-
-    if (auth_token):
-        token_type, jwt_token = auth_token.split(' ')
-        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
-        return TEMPLATES.TemplateResponse("home/tables.html", {"request" : request})
-
-    return RedirectResponse(router.url_path_for('signin'))    
-
-
+    return TEMPLATES.TemplateResponse("home/tables.html", {"request" : request})
 
 
 @router.get('/billing', status_code=status.HTTP_200_OK)
+@oauth2.auth_required
 def billing(request: Request):
-    auth_token  = request.cookies.get('Authorization')
-
-    if (auth_token):
-        token_type, jwt_token = auth_token.split(' ')
-        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
-        return TEMPLATES.TemplateResponse("home/billing.html", {"request" : request})
-
-    return RedirectResponse(router.url_path_for('signin'))    
+    return TEMPLATES.TemplateResponse("home/billing.html", {"request" : request})
 
 @router.get('/virtual-reality', status_code=status.HTTP_200_OK)
+@oauth2.auth_required
 def virtual_reality(request: Request):
-    auth_token  = request.cookies.get('Authorization')
-
-    if (auth_token):
-        token_type, jwt_token = auth_token.split(' ')
-        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
-        return TEMPLATES.TemplateResponse("home/virtual-reality.html", {"request" : request})
-
-    return RedirectResponse(router.url_path_for('signin'))    
+    return TEMPLATES.TemplateResponse("home/virtual-reality.html", {"request" : request})
 
 
 
 @router.get('/profile', status_code=status.HTTP_200_OK)
+@oauth2.auth_required
 def profile(request: Request):
-
-    auth_token  = request.cookies.get('Authorization')
-
-    if (auth_token):
-        token_type, jwt_token = auth_token.split(' ')
-        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
-        return TEMPLATES.TemplateResponse("home/profile.html", {"request" : request})
-
-    return RedirectResponse(router.url_path_for('signin'))    
+    return TEMPLATES.TemplateResponse("home/profile.html", {"request" : request})
 
 
 
 @router.get('/rtl', status_code=status.HTTP_200_OK)
+@oauth2.auth_required
 def rtl(request: Request):
-    auth_token  = request.cookies.get('Authorization')
-
-    if (auth_token):
-        token_type, jwt_token = auth_token.split(' ')
-        oauth2.verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
-        return TEMPLATES.TemplateResponse("home/rtl.html", {"request" : request})
-
-    return RedirectResponse(router.url_path_for('signin'))    
+    return TEMPLATES.TemplateResponse("home/rtl.html", {"request" : request})
