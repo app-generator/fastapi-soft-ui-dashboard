@@ -1,5 +1,5 @@
 # How to Migrate DB
 
-@todo
+The database migration tool we are using is `Alembic.`
 
 

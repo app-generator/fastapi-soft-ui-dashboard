@@ -11,8 +11,8 @@ from src.models import Base
 # access to the values within the .ini file in use.
 config = context.config
 config.set_main_option(
-    # "sqlalchemy.url", "sqlite:///./src/sql_app.db"
-    "sqlalchemy.url", "sqlite:///./src/sql_app.db"
+    "sqlalchemy.url", "sqlite:///./src/sql_app.db",
+    # f"mysql://{settings.database_username}:{settings.database_password}@{settings.database_port}/{settings.database_name}"
     )
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
