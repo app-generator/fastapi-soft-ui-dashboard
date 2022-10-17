@@ -23,4 +23,4 @@ The route used to create a product is named `create_product`. This route expects
 The route used to update a product is named `update_product.` This route expects to recieve a product id (integer) in the url, as raw as json, specifying which column needs to be changed. The exact data required and corresponding types allowed can be seen in `/src/schemas.py`, under the class ProductBase.
 
 **Delete ->**
-The route used to delete one product is named `get_product.` This route expects to recieve a product id (integer) in the url. 
+The route used to delete one product is named `delete_product.` This route expects to recieve a product id (integer) in the url. 

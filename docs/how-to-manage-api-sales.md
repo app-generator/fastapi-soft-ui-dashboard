@@ -23,4 +23,4 @@ The route used to create a sale is named `create_sale`. This route expects to re
 The route used to update a sale is named `update_sale.` This route expects to recieve a sale id (integer) in the url, as raw as json, specifying which column needs to be changed. The exact data required and corresponding types allowed can be seen in `/src/schemas.py`, under the class SaleBase.
 
 **Delete ->**
-The route used to delete one sale is named `get_sale.` This route expects to recieve a sale id (integer) in the url. 
+The route used to delete one sale is named `delete_sale.` This route expects to recieve a sale id (integer) in the url. 

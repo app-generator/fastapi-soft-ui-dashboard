@@ -1,4 +1,4 @@
-# How the API is secured
+# How the API is Secured
 
 The application is secured using jwt, or `json web tokens`. Communicating to the api that you are authorized occurs in two ways, differing on whether you're manually making requests or trying to access pages that require authentication.
 
