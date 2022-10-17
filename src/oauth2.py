@@ -71,5 +71,5 @@ def auth_required(router):
             token_type, jwt_token = auth_token.split(' ')
             verify_access_token(jwt_token, HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid Credentials"))
             return router(**kwargs)        
-        # return RedirectResponse(app.ui_router.url_path_for('signin'))    
+        return RedirectResponse(app.ui_router.url_path_for('signin'))    
     return authorize_cookie
