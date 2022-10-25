@@ -1,4 +1,3 @@
-from wsgiref.handlers import read_environ
 from fastapi import APIRouter, Request, Depends, status, Response, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.responses import HTMLResponse
@@ -56,7 +55,7 @@ async def signin(request: Request):
         redirect.set_cookie('Authorization', f'Bearer {token}')
         return redirect
 
-    return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request})
+    return TEMPLATES.TemplateResponse("accounts/login.html", {"request" : request, "msg" : 'Wrong user or password'})
 
 
 @router.get("/register", status_code=status.HTTP_200_OK)

@@ -1,6 +1,3 @@
-from locale import currency
-import string
-from unicodedata import name
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 
