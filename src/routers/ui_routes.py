@@ -84,7 +84,22 @@ async def register(request: Request, response_model=HTMLResponse):
         redirect.status_code = 302
         return redirect
 
-    return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request})
+    msg = 'Something Went Wrong'
+    if (response.status_code==500):
+        msg = 'Issue with the Server'
+
+    get_users_url = app.user_router.url_path_for('create_user')
+    users_request_url = base_url.__str__() + get_users_url.__str__()[1:]
+    http3client2 = http3.AsyncClient()
+    test_response = await http3client2.get(users_request_url)
+    test_users = test_response.json()
+    for test_user in test_users:
+        if new_user.email==test_user['email']:
+            msg = 'Email Already Registered'
+        if new_user.username == test_user['username']:
+            msg = 'Username Already Registered '
+
+    return TEMPLATES.TemplateResponse("accounts/register.html", {"request" : request, "msg" : msg })
 
 @router.get('/tables', status_code=status.HTTP_200_OK)
 @oauth2.auth_required
