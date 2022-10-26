@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
+
 from fastapi import status, HTTPException, Depends, APIRouter, Response
 from typing import List
 from sqlalchemy.orm import Session

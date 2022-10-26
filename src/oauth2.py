@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
+
 from datetime import datetime, timedelta
 from urllib.request import Request
 from fastapi import Depends, status, HTTPException

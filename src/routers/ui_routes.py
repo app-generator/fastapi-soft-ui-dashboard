@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
+
 from fastapi import APIRouter, Request, Depends, status, Response, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.responses import HTMLResponse

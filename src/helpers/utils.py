@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
+
 from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated="auto")

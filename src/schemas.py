@@ -1,6 +1,10 @@
+# -*- encoding: utf-8 -*-
+"""
+Copyright (c) 2019 - present AppSeed.us
+"""
+
 from pydantic import BaseModel, EmailStr
 from typing import Optional
-
 
 class UserOut(BaseModel):
     id: int
