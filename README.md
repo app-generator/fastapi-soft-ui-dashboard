@@ -1,8 +1,6 @@
 # FastAPI Soft Dashboard
 
-Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://github.com/app-generator/ct-soft-ui-dashboard-enh)** (free version). 
-
-> UI Kit: [Soft UI Dashboard](https://github.com/app-generator/ct-soft-ui-dashboard-enh) **v1.0.6-enh1**
+Open-source FastAPI starter provided by `AppSeed` op top of a modern `Bootstrap 5` design. Designed for those who like bold elements and beautiful websites, **Soft UI Dashboard** is ready to help you create stunning websites and webapps. **Soft UI Dashboard** is built with over 70 frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining.
 
 <br />
 
@@ -10,152 +8,142 @@ Open-source starter powered by FastAPI on top of **[Soft UI Dashboard](https://g
 
 | Status | Item | info | 
 | --- | --- | --- |
-| ❌ | **Up-to-date Dependencies** | - |
-| ❌ | **Best Practices** | This [guide](https://github.com/zhanymkanov/fastapi-best-practices) used as reference |
-| ❌ | **Simple, Intuitive Codebase** | [More info](https://github.com/app-generator/fastapi-soft-ui-dashboard/issues/1) |
-| ❌ | **UI Kit** | `Bootstrap 5`, `Dark-Mode` (persistent) |
-| ❌ | **Persistence** | `SQLite`, `MySql` |
-| ❌ | **Basic Authentication** | classic user/password |
-| ❌ | **OAuth** | `Github` & `Twitter` providers |
-| ❌ | **API** | Products & Sales (linked tables) |
-|     |        | GET Requests (public), `get/`, `get/id`  |
-|     |        | Mutating requests (Create, UPD, DEL) (reserved for authenticated users) |
+| ✅ | **Up-to-date Dependencies** | - |
+| ✅ | **[Soft Dashboard Design](https://www.creative-tim.com/product/soft-ui-dashboard?AFFILIATE=128200)** | (Free Version) by `Creative-Tim` |
+| ✅ | **UI Kit** | `Bootstrap 5`, `Dark-Mode` (persistent) |
+| ✅ | **Persistence** | `SQLite`, `MySql` |
+| ✅ | **Basic Authentication** | classic user/password |
+| ✅ | **API** | Products & Sales (linked tables) |
+|     |         | GET Requests (public), `get/`, `get/id`  |
+|     |         | Mutating requests (Create, UPD, DEL) (reserved for authenticated users) |
 | ❌ | **Docker** | Simple Setup (local usage) |
-
-> Something is missing? Submit a new `product feature request` using the [issues tracker](https://github.com/app-generator/fastapi-soft-ui-dashboard/issues).
-
-<br />
-
-## How to used in `Docker`
-
-> Development `Docker`
-
-- The docker-compose.yaml file is to be used for Development.
-- This particular docker-compose houses the `sqlite configuration`.
-- in the root folder, enter the following command (without the quotes): 
-  - `$ docker-compose up --build`.
-
-> Production Docker
-   - The default docker-compose.yaml file is to be used for production.
-   - This particular docker-compose houses the `mysql configuration`.
-   - in the root folder, enter the following command (without the quotes): `docker-compose up`.
+| ❌ | **OAuth** | `Github` & `Twitter` providers |
 
 <br />
 
-## The manual build
+![Soft UI Dashboard - Open-source FastAPI starter provided by by AppSeed.](https://user-images.githubusercontent.com/51070104/175773323-3345d618-0e78-4c85-83fc-f495dc3f0bb0.png)
+
+<br />
+
+## Project Structure
 
 > This application is composed of `3 basic parts` in the root folder.
-   1. src store the codebase for the main application.
-   2. alembic stores the database migration library.
-   3. tests stores the unit testing library.
 
-> The following are `steps on how to manually build the fastapi app`. All of the commands are to be entered in the root directory.
-   1. create a virtual environment with the following command (always without the quotes): `python -m venv venv`
-   2. activate the virtual environment, for linux/ubuntu: `source/bin/activate`, for windows `source/Scripts/activate`
-   3. install the dependencies: `pip install -r requirements.txt`
-   4. create a `.env` file, then copy and paste-in the contents of `.env.dist`, and fill in the configuration with your credentials.
-         > setting the `debugging` config to `1` will start the app with sqlite, setting it to `0` will start the app with mysql.  
-   5. run the application: `uvicorn src.app:app --reload`
-
-> The following are `steps on how to run unit testing`.
-   1. in the root directory: `pytest -v -s`
-
-> The following are `steps on how to migrate the structure of the database`
-   1. in the root directory: `alembic upgrade head`
-      > instead of `head` a version id can be supplied.  
-
-@ToDo
-
-
-```bash
-$ # All steps below
-```
-
-Access the `app` section in the browser: `http://127.0.0.1:5000/`
+- `src` provides the codebase for the main application.
+- `alembic` manages the DB database migration layer
+- `tests` stores the unit testing library.
 
 <br />
 
-## ✨ Code-base structure
+## Manual Build
 
-@ToDo - The project structure (to be updated) 
+> Download the code 
 
+```bash
+$ git clone https://github.com/app-generator/fastapi-soft-ui-dashboard.git
+$ cd fastapi-soft-ui-dashboard
+```
+
+<br />
+
+> Install modules via `VENV`
+
+```bash
+$ python -m venv env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+```
+
+<br />
+
+> Create `.env` from `env.sample` - here is a sample 
+
+**Note:** Setting the `debugging` config to `1` will start the app with `SQLite`, setting it to `0` will start the app with `MySql`. 
+
+```env
+DEBUGGING=1
+
+DATABASE_HOSTNAME=localhost
+DATABASE_PORT=5432
+DATABASE_PASSWORD=somepassword
+DATABASE_NAME=somedbname
+DATABASE_USERNAME=mayberoot
+
+SECRET_KEY=SUPER_SECRET_HERE
+ALGORITHM=HS256
+
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+<br />
+
+> Migrate the database (`create tables`)
+
+```bash
+$ alembic upgrade head
+```
+
+<br />
+
+> Start the app
+
+```bash
+$ uvicorn src.app:app --reload
+```
+
+At this point, the app runs at `http://127.0.0.1:8000/`. 
+
+<br />
+
+## ✨ Codebase structure
+
+The project is coded using a modular, intuitive structure as presented below:
 
 ```bash
 < PROJECT ROOT >
-   |-- .github/                         # Folder having github configurations
-   |   |-- workflows/                   # Folder having github workflow configurations
-   |       |-- main.yml                 # Main workflow for automated unit testing/syntax check
-   |       |-- release.yml              # Release workflow to release code when PR merged in main
-   |   |-- CODEOWNERS                   # List of codeonwers, special check can be made in repo settings
-   |   |-- PULL_REQUEST_TEMPLATE.md     # PR template
-   |   |-- dependabot.yml               # Dependabot configurations (optional)
-   |-- docs/                            # Folder to contain any helping docs
-   |   |-- api_examples.json            # Example doc
-   |-- scripts/                         # Folder to contain any SQL scripts
-   |   |-- scripts.sql                  # Example script
-   |-- src/                             # Folder having all the python code
-   |    |-- models                      # Folder having all models
-   |       |-- custom/                  # Folder for custom models
-   |       |-- db/                      # Folder for database models
-   |           |-- product.py           # Example file for product model
-   |           |-- sales.py             # Example file for sales model
-   |       |-- request.py               # File containing all request models
-   |       |-- response.py              # File containing all response models
-   |    |-- routers/                    # Folder for all FastAPI routes
-   |        |-- v1/                     # Folder for v1 version
-   |            |-- auth/               # Folder for authentication routes
-   |                |-- auth_routes.py  # File containing authentication routes for v1
-   |            |-- product_routes.py   # File containing product routes for v1
-   |            |-- sales_routes.py     # File containing sales routes for v1
-   |        |-- healthcheck.py          # Base file for healthcheck for FastAPI
-   |    |-- helpers/                    # Folder containing helper methods
-   |        |-- product_helpers.py      # File having product related helper methods
-   |        |-- sales_helpers.py        # File having sales related helper methods
-   |        |-- common_helpers.py       # File having common helper methods
-   |        |-- database.py             # File having database connection and methods
-   |        |-- cache.py                # File having cache connection and methods
-   |        |-- decorators.py           # File having decorators
+   |
+   |-- src/
+   |    |
+   |    |-- helpers/                        # A simple app that serve HTML files
+   |    |    |-- database.py                # Define app routes
+   |    |    |-- utils.py                   # Define app routes
+   |    |
+   |    |-- routers/                        # Handles routes (all sections)
+   |    |    |-- auth/                      # Implements authentication routes  
+   |    |    |-- ui_routes.py                 
+   |    |    |-- user_routes.py
+   |    |
    |    |-- static/
-   |         |-- <css, JS, images>      # CSS files, Javascripts files
-   |    |-- templates/                  # Templates used to render pages
-   |         |-- includes/              # HTML chunks and components
-   |              |-- navigation.html   # Top menu component
-   |              |-- sidebar.html      # Sidebar component
-   |              |-- footer.html       # App Footer
-   |              |-- scripts.html      # Scripts common to all pages
-   |         |-- layouts/               # Master pages
-   |              |-- base-fullscreen.html  # Used by Authentication pages
-   |              |-- base.html         # Used by common pages
-   |         |-- accounts/              # Authentication pages
-   |              |-- login.html        # Login page
-   |              |-- register.html     # Register page
-   |         |-- home/                  # UI Kit Pages
-   |              |-- index.html        # Index page
-   |              |-- 404-page.html     # 404 page
-   |              |-- *.html            # All other pages
-   |    |-- app.py                      # Containing main method, project startup
-   |    |-- config.py                   # Containing Settings class for fetching configurations
-   |    |-- constants.py                # Global constants
-   |    |-- exception_handlers.py       # Global exception handling
+   |    |    |-- <css, JS, images>          # CSS files, Javascripts files
+   |    |
+   |    |-- templates/                      # Templates used to render pages
+   |    |    |-- includes/                  # HTML chunks and components
+   |    |    |    |-- navigation.html       # Top menu component
+   |    |    |    |-- sidebar.html          # Sidebar component
+   |    |    |    |-- footer.html           # App Footer
+   |    |    |    |-- scripts.html          # Scripts common to all pages
+   |    |    |
+   |    |    |-- layouts/                   # Master pages
+   |    |    |    |-- base-fullscreen.html  # Used by Authentication pages
+   |    |    |    |-- base.html             # Used by common pages
+   |    |    |
+   |    |    |-- accounts/                  # Authentication pages
+   |    |    |    |-- login.html            # Login page
+   |    |    |    |-- register.html         # Register page
+   |    |    |
+   |    |    |-- home/                      # UI Kit Pages
+   |    |         |-- index.html            # Index page
+   |    |         |-- 404-page.html         # 404 page
+   |    |         |-- *.html                # All other pages
+   |    |    
+   |  models.py                             # Defines the models
+   |  config.py                             # Holds APP Configuration
+   |  __init__.py                           # Builds the FastAPI object
+   |  app.py                                # Bundles ALL resources
    |
-   |-- tests/                           # Folder having tests
-   |    |-- __init__.py                 # Containing test startup
-   |    |-- v1/                         # Tests for version v1
-   |        |-- __init__.py
-   |        |-- test_v1.py              # Containing tests for version v1
+   |-- requirements.txt                     # App Dependencies
    |
-   |-- .env.dist                        # Template for environment variables
-   |-- .env                             # Actual environment variables file
-   |-- .gitignore                       # File containing git ignore configurations                           
-   |-- CHANGELOG.md                     # File containing change logs
-   |-- LICENSE                          # File containing license information
-   |-- Dockerfile                       # Docker file
-   |-- Makefile                         # File containing make commands
-   |-- README.md                        # README file
-   |-- docker-compose.yaml              # File to run docker along with other dependencies
-   |-- requirements.txt                 # Python packages dependencies
-   |-- package-lock.json                # npm packages information
-   |-- package.json                     # npm packages dependencies
+   |-- .env                                 # Inject Configuration via Environment
    |
    |-- ************************************************************************
 ```
