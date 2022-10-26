@@ -1,6 +1,6 @@
 # Change Log
 
-## [1.0.0] 2022-10-26
+## [1.0.0] 2022-10-26 
 ### Minimal Version
 
 - The stable version that provides: 
