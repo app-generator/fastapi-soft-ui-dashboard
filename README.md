@@ -18,6 +18,7 @@ Open-source FastAPI starter provided by `AppSeed` op top of a modern `Bootstrap 
 |     |         | Mutating requests (Create, UPD, DEL) (reserved for authenticated users) |
 | ❌ | **Docker** | Simple Setup (local usage) |
 | ❌ | **OAuth** | `Github` & `Twitter` providers |
+| ❌ | Unitary tests | - |
 
 <br />
 
