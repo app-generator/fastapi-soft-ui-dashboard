@@ -1,6 +1,11 @@
-# FastAPI Soft Dashboard
+# [FastAPI](https://app-generator.dev/docs/technologies/fastapi/index.html) Soft Dashboard
 
-Open-source FastAPI starter provided by `AppSeed` op top of a modern `Bootstrap 5` design. Designed for those who like bold elements and beautiful websites, **Soft UI Dashboard** is ready to help you create stunning websites and webapps. **Soft UI Dashboard** is built with over 70 frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining.
+Open-source [FastAPI](https://app-generator.dev/docs/technologies/fastapi/index.html) built on top of a modern `Bootstrap 5` design. Designed for those who like bold elements and beautiful websites, **[Soft UI Dashboard](https://app-generator.dev/product/soft-ui-dashboard/)** is ready to help you create stunning websites and web apps. 
+
+> 👉 For more [FastAPI Resources](https://app-generator.dev/docs/technologies/fastapi.html) please access:
+
+- [Getting Started with FastAPI](https://app-generator.dev/docs/technologies/fastapi/index.html)
+- [FastAPI Cheatsheet](https://app-generator.dev/docs/technologies/fastapi/cheatsheet.html)
 
 <br />
 
@@ -9,7 +14,7 @@ Open-source FastAPI starter provided by `AppSeed` op top of a modern `Bootstrap 
 | Status | Item | info | 
 | --- | --- | --- |
 | ✅ | **Up-to-date Dependencies** | - |
-| ✅ | **[Soft Dashboard Design](https://www.creative-tim.com/product/soft-ui-dashboard?AFFILIATE=128200)** | (Free Version) by `Creative-Tim` |
+| ✅ | **[Soft Dashboard Design](https://app-generator.dev/product/soft-ui-dashboard/)** | Designed by **[Creative-Tim(https://app-generator.dev/agency/creative-tim/)** |
 | ✅ | **UI Kit** | `Bootstrap 5`, `Dark-Mode` (persistent) |
 | ✅ | **Persistence** | `SQLite`, `MySql` |
 | ✅ | **Basic Authentication** | classic user/password |
@@ -152,4 +157,4 @@ The project is coded using a modular, intuitive structure as presented below:
 <br /> 
 
 ---
-**FastAPI Soft Dashboard** - Open-source Starter provided by **[AppSeed](https://appseed.us/)**
+[FastAPI](https://app-generator.dev/docs/technologies/fastapi/index.html) Soft Dashboard - Open-source eCommerce Starter provided by [App-Generator](https://app-generator.dev/).
